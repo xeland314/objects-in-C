@@ -1,7 +1,7 @@
 #ifndef _STRING_H_
 #define _STRING_H_
 
-typedef struct _string {
+typedef struct {
     char * text;
 } String;
 
@@ -14,9 +14,12 @@ void String_setText(String * str, const char * text);
 void String_println(String * str);
 void String_print(String * str);
 void String_delete(String * str);
+void String_appendString(String * str, String * otherstr);
+void String_appendChar(String * str, const char * text);
 
 void String_capitalize(String * str);
 void String_casefold(String * str);
+void String_reverse(String * str);
 
 String String_clone(String * str);
 

@@ -31,14 +31,7 @@ int String_compare(String* str, String* otherStr)
 
 void String_setText(String * str, const char * text)
 {
-    assert(str);
-    if(String_size(str) == 0)
-    {
-        strcpy(str -> text, text); 
-    } else {
-        free(str -> text);
-        strcpy(str -> text, text);
-    }
+    assert(str); strcpy(str -> text, text); 
 }
 
 void String_print(String * str)
@@ -53,8 +46,19 @@ void String_println(String * str)
 
 void String_delete(String * str)
 {
+    assert(str); free(str -> text);
+}
+
+void String_appendString(String * str, String * otherstr)
+{
     assert(str);
-    free(str -> text);
+    strcat(str -> text, otherstr -> text);
+}
+
+void String_appendChar(String * str, const char * text)
+{
+    assert(str);
+    strcat(str -> text, text);
 }
 
 void String_capitalize(String * str)
@@ -72,6 +76,18 @@ void String_casefold(String * str)
     {
         char tmp = (str -> text)[i];
         (str -> text)[i] = tolower(tmp);
+    }
+}
+
+void String_reverse(String * str) {
+
+    int left; char temp;
+    int right = String_size(str) - 1;
+
+    for (left = 0; left < right; left++, right--) {
+        temp = (str -> text)[left];
+        (str -> text)[left] = (str -> text)[right];
+        (str -> text)[right] = temp;
     }
 }
 

@@ -37,4 +37,8 @@ void ColoredString_println(ColoredString * cstr)
 {
     ColoredString_print(cstr); printf("\n");
 }
-
+void ColoredString_delete(ColoredString * cstr)
+{
+    String_delete(&cstr->str);
+    Color_delete(&cstr->clr);
+}

@@ -1,9 +1,7 @@
 #ifndef _COLOR_H_
 #define _COLOR_H_
 
-#include "String.h"
-
-typedef struct _color {
+typedef struct {
     char * color;
     char * mode;
 } Color;
@@ -11,6 +9,7 @@ typedef struct _color {
 void Color_init(Color * clr, char * color, char * mode);
 char * Color_toString(Color * color);
 void Color_test(Color * color);
+void Color_delete(Color * color);
 
 /* Color definitions: */
 #define START_COLOR     "\033["

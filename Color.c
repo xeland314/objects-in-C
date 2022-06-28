@@ -1,4 +1,5 @@
 #include "Color.h"
+#include "String.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -32,4 +33,10 @@ void Color_test(Color * color)
     String_println(&testText);
     // Back to normal stdout:
     printf(NORMAL_STDOUT);
+}
+
+void Color_delete(Color * color)
+{
+    free(color -> color);
+    free(color -> mode);
 }
