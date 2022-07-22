@@ -1,4 +1,4 @@
-#include "ColoredString.h"
+#include "../include/ColoredString.h"
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
