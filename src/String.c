@@ -1,34 +1,64 @@
 #include "../include/String.h"
+#include "../include/Object.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
 #include <ctype.h>
 
-void String_init(String * str, const char * text)
+static void * String_init(void * _self, va_list * app)
 {
-    str -> text = malloc(sizeof(char *) * (strlen(text) + 1));
-    assert(str -> text);
-    strcpy(str -> text, text);
+    String * self = _self;
+    const char * text = va_arg(* app, const char *);
+    self -> text = malloc(sizeof(char *) * (strlen(text) + 1));
+    assert(self -> text);
+    strcpy(self -> text, text);
+    return self;
 }
 
-int String_size(String * str)
+static void * String_delete(void * _self)
 {
-    assert(str);
-    return strlen(str -> text);
+    String * self = _self;
+    free(self -> text), self -> text = 0;
+    return self;
 }
 
-int String_compare(String* str, String* otherStr)
+static void * String_clone(const void * _self)
 {
-    if(str == otherStr)
+    const String * self = _self;
+    return new(str, self -> text);
+}
+
+static size_t String_sizeOf(const void * _self)
+{
+    const String * self = _self;
+    return strlen(self -> text);
+}
+
+static int String_differ(const void * _self, const void * _other)
+{
+    const String * self = _self;
+    const String * other = _other;
+
+    if(self == other)
         return 0;
 
-    if(!otherStr)
+    if(!other || (other -> class) != str)
         return 1;
 
-    return strcmp(str -> text, otherStr -> text);
+    return strcmp(self -> text, other -> text);
 }
 
+static const Class _String = {
+    sizeof(String),
+    String_init, String_delete,
+    String_clone, String_sizeOf, 
+    String_differ
+};
+
+const void * str = & _String;
+
+/*
 void String_setText(String * str, const char * text)
 {
     assert(str); strcpy(str -> text, text); 
@@ -42,11 +72,6 @@ void String_print(String * str)
 void String_println(String * str)
 {
     printf("%s\n", str -> text);
-}
-
-void String_delete(String * str)
-{
-    assert(str); free(str -> text);
 }
 
 void String_appendString(String * str, String * otherstr)
@@ -90,10 +115,4 @@ void String_reverse(String * str) {
         (str -> text)[right] = temp;
     }
 }
-
-String String_clone(String * str)
-{
-    String newStr;
-    String_init(&newStr, str -> text);
-    return newStr;
-}
+*/

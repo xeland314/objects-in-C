@@ -3,7 +3,7 @@ test02 = /tmp/test02
 test03 = /tmp/test03
 currTest := /test01
 
-src1 = src/String.c
+src1 = src/Object.c src/String.c
 src2 = src/Color.c
 src3 = src/ColoredString.c
 
