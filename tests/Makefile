@@ -3,9 +3,8 @@ test02 = /tmp/test02
 test03 = /tmp/test03
 currTest := /test01
 
-src1 = src/String.c
-src2 = src/Color.c
-src3 = src/ColoredString.c
+src1 = src/Object.c src/String.c
+src2 = src/Object.c src/Color.c
 
 SOURCES = $(wildcard src/*.c)
 
@@ -13,10 +12,10 @@ test1:
 	gcc $(src1) tests/test01.c -o $(test01)
 
 test2:
-	gcc $(src1) $(src2) tests/test02.c -o $(test02)
+	gcc $(src2) tests/test02.c -o $(test02)
 
-test3:
-	gcc $(SOURCES) tests/test03.c -o $(test03)
+check_test1:
+	cd /tmp/ && ./test01
 
-test:
-	cd /tmp/ && .$(currTest)
+check_test2:
+	cd /tmp/ && ./test02
