@@ -5,8 +5,8 @@
 
 int main()
 {
-    void * a = new(str, "Hello, world"), * aa = clone(a);
-    void * b = new(str, "b");
+    void * a = new(String, "Hello, world"), * aa = clone(a);
+    void * b = new(String, "b");
     
     printf("sizeOf(a) == %lu\n", sizeOf(a));
     
@@ -19,6 +19,10 @@ int main()
     if (a == aa)
         puts("clone?");
     
+    printf("a = %s\n", toString(a));
+    printf("aa = %s\n", toString(aa));
+    printf("b = %s\n", toString(b));
+
     delete(a), delete(aa), delete(b);
     return 0;
 }

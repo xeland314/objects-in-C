@@ -48,3 +48,10 @@ size_t sizeOf(const void * self)
     return (* object) -> size;
 }
 
+char * toString(const void * self)
+{
+    const Class * const * object = self;
+    assert(self && *object);
+    return (* object) -> toString(self);
+}
+

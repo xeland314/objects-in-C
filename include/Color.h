@@ -2,14 +2,15 @@
 #define _COLOR_H_
 
 typedef struct {
+    const void * class;
     char * color;
     char * mode;
-} Color;
+} ColorType;
 
-void Color_init(Color * clr, char * color, char * mode);
-char * Color_toString(Color * color);
-void Color_test(Color * color);
-void Color_delete(Color * color);
+extern const void * Color;
+
+void setColor(const void * _self);
+void resetColor();
 
 /* Color definitions: */
 #define START_COLOR     "\033["

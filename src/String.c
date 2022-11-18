@@ -8,7 +8,7 @@
 
 static void * String_init(void * _self, va_list * app)
 {
-    String * self = _self;
+    StringType * self = _self;
     const char * text = va_arg(* app, const char *);
     self -> text = malloc(sizeof(char *) * (strlen(text) + 1));
     assert(self -> text);
@@ -18,45 +18,54 @@ static void * String_init(void * _self, va_list * app)
 
 static void * String_delete(void * _self)
 {
-    String * self = _self;
+    StringType * self = _self;
     free(self -> text), self -> text = 0;
     return self;
 }
 
 static void * String_clone(const void * _self)
 {
-    const String * self = _self;
-    return new(str, self -> text);
+    const StringType * self = _self;
+    return new(String, self -> text);
 }
 
 static size_t String_sizeOf(const void * _self)
 {
-    const String * self = _self;
+    const StringType * self = _self;
     return strlen(self -> text);
 }
 
 static int String_differ(const void * _self, const void * _other)
 {
-    const String * self = _self;
-    const String * other = _other;
+    const StringType * self = _self;
+    const StringType * other = _other;
 
     if(self == other)
         return 0;
 
-    if(!other || (other -> class) != str)
+    if(!other || (other -> class) != String)
         return 1;
 
     return strcmp(self -> text, other -> text);
 }
 
+static char * String_toString(const void * _self)
+{
+    const StringType * self = _self;
+    return self -> text;
+}
+
 static const Class _String = {
-    sizeof(String),
-    String_init, String_delete,
-    String_clone, String_sizeOf, 
-    String_differ
+    sizeof(StringType),
+    String_init,
+    String_delete,
+    String_clone,
+    String_sizeOf, 
+    String_differ,
+    String_toString
 };
 
-const void * str = & _String;
+const void * String = & _String;
 
 /*
 void String_setText(String * str, const char * text)

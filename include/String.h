@@ -8,9 +8,9 @@
 typedef struct {
     const void * class;
     char * text;
-} String;
+} StringType;
 
-extern const void * str;
+extern const void * String;
 
 /*
 void String_setText(String * str, const char * text);
