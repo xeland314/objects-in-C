@@ -5,8 +5,9 @@
 
 int main()
 {
-    void * blue = new(Color, BLUE, DARK), * blue2 = clone(blue);
-    void * red = new(Color, RED, HIGHLIGHTED);
+    void * blue = new(Color, NORMAL, BLUE, WHITE);
+    void * blue2 = clone(blue);
+    void * red = new(Color, NORMAL, RED, YELLOW);
     
     printf("sizeOf(a) == %lu\n", sizeOf(blue));
     
@@ -19,11 +20,8 @@ int main()
     if (blue == blue2)
         puts("clone?");
 
-    setColor(blue);
-    puts("Texto en azul");
-    setColor(red);
-    puts("Texto en rojo");
-    resetColor();
+    printf("%sTexto en azul%s\n", toString(blue), NORMAL_STDOUT);
+    printf("%sTexto en rojo%s\n", toString(red), NORMAL_STDOUT);
     puts("Texto normal");
 
     delete(blue), delete(blue2), delete(red);
