@@ -4,41 +4,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <assert.h>
 
 static void * Color_init(void * _self, va_list * app)
 {
     ColorType * self = _self;
-    const char * color = va_arg(* app, const char *);
-    const char * mode = va_arg(* app, const char *);
-    self -> color = malloc(sizeof(char *) * 3);
-    self -> mode = malloc(sizeof(char *) * 2);
-    assert(self -> color); assert(self -> mode);
-    strcpy(self -> color, color);
-    strcpy(self -> mode, mode);
+    self -> attr = va_arg(* app, unsigned int);
+    self -> fg = va_arg(* app, unsigned int);
+    self -> bg = va_arg(* app, unsigned int);
     return self;
 }
 
 static void * Color_delete(void * _self)
 {
     ColorType * self = _self;
-    free(self -> color), self -> color = 0;
-    free(self -> mode), self -> mode = 0;
+    self -> attr = 0;
+    self -> fg = 0;
+    self -> bg = 0;
     return self;
 }
 
 static void * Color_clone(const void * _self)
 {
     const ColorType * self = _self;
-    return new(Color, self -> color, self -> mode);
+    return new(Color, self -> attr, self -> fg, self -> bg);
 }
 
 static size_t Color_sizeOf(const void * _self)
 {
     const ColorType * self = _self;
-    size_t lenColor = strlen(self -> color);
-    size_t lenMode = strlen(self -> mode);
-    return lenColor + lenMode;
+    return sizeof(self);
 }
 
 static int Color_differ(const void * _self, const void * _other)
@@ -52,19 +46,22 @@ static int Color_differ(const void * _self, const void * _other)
     if(!other || (other -> class) != Color)
         return 1;
     
-    size_t cmpColor = strcmp(self -> color, other -> color);
-    size_t cmpMode = strcmp(self -> mode, other -> mode);
-
-    return cmpColor + cmpMode;    
+    int diffAttr = self -> attr - other -> attr;
+    int diffFg = self -> fg - other -> fg;
+    int diffBg = self -> bg - other -> bg;
+    return diffAttr + diffFg + diffBg;    
 }
 
 static char * Color_toString(const void * _self)
 {
     const ColorType * self = _self;
-    char * color = malloc(sizeof(char *) * 16);
-    strcpy(color, START_COLOR);
-    strcat(color, self -> mode);
-    strcat(color, self -> color);
+    char * color = malloc(sizeof(char *) * 13);
+	sprintf(
+        color, "\033[%d;%d;%dm",
+        self -> attr + 0,
+        self -> fg + 30, 
+        self -> bg + 40
+    );
     return color;
 }
 
