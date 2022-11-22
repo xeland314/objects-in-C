@@ -12,17 +12,13 @@ typedef struct {
 
 extern const void * String;
 
-/*
-void String_setText(String * str, const char * text);
-void String_println(String * str);
-void String_print(String * str);
-
-void String_appendString(String * str, String * otherstr);
-void String_appendChar(String * str, const char * text);
-
-void String_capitalize(String * str);
-void String_casefold(String * str);
-void String_reverse(String * str);
-*/ 
+// STRING METHODS
+void String_appendString(const void * str, const void * other);
+void String_appendChar(const void * str, const char * text);
+void String_print(const void * str);
+void String_println(const void * str);
+void String_reverse(const void * str);
+void String_toupper(const void * str);
+void String_tolower(const void * str);
 
 #endif // _STRING_H_

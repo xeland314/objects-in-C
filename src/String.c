@@ -67,61 +67,63 @@ static const Class _String = {
 
 const void * String = & _String;
 
-/*
-void String_setText(String * str, const char * text)
+/* STRING METHODS
+ */
+
+void String_reverse(const void * str) 
 {
-    assert(str); strcpy(str -> text, text); 
-}
-
-void String_print(String * str)
-{
-    printf("%s", str -> text);
-}
-
-void String_println(String * str)
-{
-    printf("%s\n", str -> text);
-}
-
-void String_appendString(String * str, String * otherstr)
-{
-    assert(str);
-    strcat(str -> text, otherstr -> text);
-}
-
-void String_appendChar(String * str, const char * text)
-{
-    assert(str);
-    strcat(str -> text, text);
-}
-
-void String_capitalize(String * str)
-{
-    for(int i = 0; i < String_size(str); i++)
-    {
-        char tmp = (str -> text)[i];
-        (str -> text)[i] = toupper(tmp);
-    }
-}
-
-void String_casefold(String * str)
-{
-    for(int i = 0; i < String_size(str); i++)
-    {
-        char tmp = (str -> text)[i];
-        (str -> text)[i] = tolower(tmp);
-    }
-}
-
-void String_reverse(String * str) {
-
+    const StringType * self = str;
     int left; char temp;
-    int right = String_size(str) - 1;
-
+    int right = strlen(self -> text) - 1;
     for (left = 0; left < right; left++, right--) {
-        temp = (str -> text)[left];
-        (str -> text)[left] = (str -> text)[right];
-        (str -> text)[right] = temp;
+        temp = (self -> text)[left];
+        (self -> text)[left] = (self -> text)[right];
+        (self -> text)[right] = temp;
     }
 }
-*/
+
+void String_print(const void * str)
+{
+    const StringType * self = str;
+    printf("%s", self -> text);
+}
+
+void String_println(const void * str)
+{
+    const StringType * self = str;
+    printf("%s\n", self -> text);
+}
+
+void String_appendString(const void * str, const void * other)
+{
+    const StringType * self = str;
+    const StringType * self2 = other;
+    strcat(self -> text, self2 -> text);
+}
+
+void String_appendChar(const void * str, const char * text)
+{
+    const StringType * self = str;
+    strcat(self -> text, text);
+}
+
+void String_toupper(const void * str)
+{
+    const StringType * self = str;
+    for(int i = 0; i < (int)strlen(self -> text); i++)
+    {
+        char tmp = (self -> text)[i];
+        (self -> text)[i] = toupper(tmp);
+    }
+}
+
+void String_tolower(const void * str)
+{
+    const StringType * self = str;
+    for(int i = 0; i < (int)strlen(self -> text); i++)
+    {
+        char tmp = (self -> text)[i];
+        (self -> text)[i] = tolower(tmp);
+    }
+}
+
