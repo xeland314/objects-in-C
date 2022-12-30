@@ -43,9 +43,9 @@ int main()
 
     printf("%s\n", String_center(b, 20));
     printf("%s\n", String_center(b, 19));
-    printf("%s\n", String_center_with_char(b, 20, "-"));
-    printf("%s\n", String_center_with_char(b, 19, "-"));
-    printf("%s\n", String_center_with_char(b, 20, ""));
+    printf("%s\n", String_centerWithChar(b, 20, "-"));
+    printf("%s\n", String_centerWithChar(b, 19, "-"));
+    printf("%s\n", String_centerWithChar(b, 20, ""));
 
     // This line raises an exception:
     // printf("%s\n", String_center_with_char(b, 20, "-+"));

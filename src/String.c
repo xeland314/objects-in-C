@@ -127,7 +127,7 @@ void String_tolower(const void * str)
     }
 }
 
-char * String_center_with_char(
+char * String_centerWithChar(
     const void * str,
     int length,
     const char * characterToFill
@@ -185,5 +185,5 @@ char * String_center_with_char(
 
 char * String_center(const void * str, int length)
 {
-    return String_center_with_char(str, length, " ");
+    return String_centerWithChar(str, length, " ");
 }
