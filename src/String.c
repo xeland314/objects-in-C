@@ -70,9 +70,11 @@ const void * String = & _String;
 /* STRING METHODS
  */
 
-void String_reverse(const void * str) 
+void * String_reverse(const void * str) 
 {
-    const StringType * self = str;
+    void * reversedString = clone(str);
+    const StringType * self = reversedString;
+    
     int left; char temp;
     int right = strlen(self -> text) - 1;
     for (left = 0; left < right; left++, right--) {
@@ -80,6 +82,7 @@ void String_reverse(const void * str)
         (self -> text)[left] = (self -> text)[right];
         (self -> text)[right] = temp;
     }
+    return reversedString;
 }
 
 void String_print(const void * str)
@@ -107,27 +110,29 @@ void String_appendChar(const void * str, const char * text)
     strcat(self -> text, text);
 }
 
-void String_toupper(const void * str)
+void * String_toupper(const void * str)
 {
-    const StringType * self = str;
-    for(int i = 0; i < (int)strlen(self -> text); i++)
-    {
+    void * upperedString = clone(str);
+    const StringType * self = upperedString;
+    for(int i = 0; i < (int)strlen(self -> text); i++) {
         char tmp = (self -> text)[i];
         (self -> text)[i] = toupper(tmp);
     }
+    return upperedString;
 }
 
-void String_tolower(const void * str)
+void * String_casefold(const void * str)
 {
-    const StringType * self = str;
-    for(int i = 0; i < (int)strlen(self -> text); i++)
-    {
+    void * casefoldedString = clone(str);
+    const StringType * self = casefoldedString;
+    for(int i = 0; i < (int)strlen(self -> text); i++) {
         char tmp = (self -> text)[i];
         (self -> text)[i] = tolower(tmp);
     }
+    return casefoldedString;
 }
 
-char * String_centerWithChar(
+void * String_centerWithChar(
     const void * str,
     int length,
     const char * characterToFill
@@ -143,9 +148,7 @@ char * String_centerWithChar(
     int strLength = strlen(self -> text);
     
     if(length <= strLength) {
-        char * text = malloc(sizeof(char *) * (strLength));
-        strcpy(text, self -> text);
-        return text;
+        return clone(str);
     }
     
     if(strlen(characterToFill) == 0) {
@@ -180,10 +183,11 @@ char * String_centerWithChar(
             strcat(centeredText, characterToFill);
         }
     }
-    return centeredText;
+    void * centeredString = new(String, centeredText);
+    return centeredString;
 }
 
-char * String_center(const void * str, int length)
+void * String_center(const void * str, int length)
 {
     return String_centerWithChar(str, length, " ");
 }

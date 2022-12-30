@@ -23,17 +23,9 @@ int main()
     printf("aa = %s\n", toString(aa));
     printf("b = %s\n", toString(b));
     
-    String_reverse(a);
-    printf("a reversed = %s\n", toString(a));
-
-    String_reverse(a);
-    String_println(a);
-
-    String_tolower(a);
-    String_println(a);
-
-    String_toupper(a);
-    String_println(a);
+    String_println(String_reverse(a));
+    String_println(String_casefold(a));
+    String_println(String_toupper(a));
 
     String_appendString(a, b);
     String_println(a);
@@ -41,14 +33,14 @@ int main()
     String_appendChar(b, "arco");
     String_println(b);
 
-    printf("%s\n", String_center(b, 20));
-    printf("%s\n", String_center(b, 19));
-    printf("%s\n", String_centerWithChar(b, 20, "-"));
-    printf("%s\n", String_centerWithChar(b, 19, "-"));
-    printf("%s\n", String_centerWithChar(b, 20, ""));
+    String_println(String_center(b, 20));
+    String_println(String_center(b, 19));
+    String_println(String_centerWithChar(b, 20, "-"));
+    String_println(String_centerWithChar(b, 19, "-"));
+    String_println(String_centerWithChar(b, 20, ""));
 
     // This line raises an exception:
-    // printf("%s\n", String_center_with_char(b, 20, "-+"));
+    // String_println(String_center_with_char(b, 20, "-+"));
 
     delete(a), delete(aa), delete(b);
     return 0;
