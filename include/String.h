@@ -15,6 +15,8 @@ extern const void * String;
 // STRING METHODS
 void String_appendString(const void * str, const void * other);
 void String_appendChar(const void * str, const char * text);
+char * String_center(const void * str, int length);
+char * String_center_with_char(const void * str, int length, const char * characterToFill);
 void String_print(const void * str);
 void String_println(const void * str);
 void String_reverse(const void * str);

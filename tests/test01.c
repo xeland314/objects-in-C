@@ -5,7 +5,7 @@
 
 int main()
 {
-    void * a = new(String, "Hello, world"), * aa = clone(a);
+    void * a = new(String, "Hello, world!!"), * aa = clone(a);
     void * b = new(String, "b");
     
     printf("sizeOf(a) == %lu\n", sizeOf(a));
@@ -40,6 +40,15 @@ int main()
 
     String_appendChar(b, "arco");
     String_println(b);
+
+    printf("%s\n", String_center(b, 20));
+    printf("%s\n", String_center(b, 19));
+    printf("%s\n", String_center_with_char(b, 20, "-"));
+    printf("%s\n", String_center_with_char(b, 19, "-"));
+    printf("%s\n", String_center_with_char(b, 20, ""));
+
+    // This line raises an exception:
+    // printf("%s\n", String_center_with_char(b, 20, "-+"));
 
     delete(a), delete(aa), delete(b);
     return 0;

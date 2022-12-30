@@ -127,3 +127,63 @@ void String_tolower(const void * str)
     }
 }
 
+char * String_center_with_char(
+    const void * str,
+    int length,
+    const char * characterToFill
+){
+    if(strlen(characterToFill) > 1) {
+        puts("StringException:");
+        puts("\tMethod: String_center_with_char");
+        puts("\tThe fill character must be exactly one character long.");
+        exit(1);
+    }
+
+    const StringType * self = str;
+    int strLength = strlen(self -> text);
+    
+    if(length <= strLength) {
+        char * text = malloc(sizeof(char *) * (strLength));
+        strcpy(text, self -> text);
+        return text;
+    }
+    
+    if(strlen(characterToFill) == 0) {
+        characterToFill = " ";
+    }
+
+    int spaces = length - strLength;
+    char * centeredText = malloc(sizeof(char *) * (length));
+
+    if(spaces % 2 == 0) {
+        // If the number of spaces is even
+        // add spaces/2 characters to the original
+        // string to center it.
+        int n = spaces / 2;
+        for (int i = 0; i < n; i++) {
+            strcat(centeredText, characterToFill);
+        }
+        strcat(centeredText, self -> text);
+        for (int i = 0; i < n; i++) {
+            strcat(centeredText, characterToFill);
+        }
+    } else {
+        // Else add spaces/2 + 1 at the begin 
+        // of the string and the rest of spaces
+        // at the end.
+        int n = spaces / 2 + 1;
+        for (int i = 0; i < n; i++) {
+            strcat(centeredText, characterToFill);
+        }
+        strcat(centeredText, self -> text);
+        for (int i = 0; i < n - 1; i++) {
+            strcat(centeredText, characterToFill);
+        }
+    }
+    return centeredText;
+}
+
+char * String_center(const void * str, int length)
+{
+    return String_center_with_char(str, length, " ");
+}
