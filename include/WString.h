@@ -13,4 +13,6 @@ typedef struct {
 
 extern const void * WString;
 
+wchar_t * toWchar(const void * _wstring);
+
 #endif // _WSTRING_H_

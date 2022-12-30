@@ -22,6 +22,9 @@ int main()
     printf("a = %s\n", toString(a));
     printf("aa = %s\n", toString(aa));
     printf("b = %s\n", toString(b));
+    
+    // Test toWchar()
+    printf("wchar_t: %ls\n", toWchar(a));
 
     delete(a), delete(aa), delete(b);
     return 0;

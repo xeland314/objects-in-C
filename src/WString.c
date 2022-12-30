@@ -71,3 +71,11 @@ static const Class _WString = {
 
 const void * WString = & _WString;
 
+wchar_t * toWchar(const void * _wstring)
+{
+    const WStringType * wstring = _wstring;
+    wchar_t * text = malloc(sizeof(wchar_t *) * (wcslen(wstring -> text) + 1));
+    wcscpy(text, wstring -> text);
+    return text;
+}
+
