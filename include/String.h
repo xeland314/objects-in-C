@@ -28,6 +28,7 @@ void String_print(const void * str);
 void String_println(const void * str);
 void * String_reverse(const void * str);
 void * String_swapcase(const void * str);
+void * String_title(const void * str);
 void * String_toupper(const void * str);
 
 // TODO: implement the following methods:
@@ -47,7 +48,6 @@ void * String_strip(const void * str);
 void * String_rjust(const void * str);
 void * String_ljust(const void * str);
 void * String_just(const void * str);
-void * String_title(const void * str);
 void * String_zfill(const void * str);
 void ** String_split(const void * str, const char * separator);
 

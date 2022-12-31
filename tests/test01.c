@@ -28,6 +28,7 @@ int main()
     String_println(String_casefold(a));
     String_println(String_reverse(a));
     String_println(String_swapcase(a));
+    String_println(String_title(a));
     String_println(String_toupper(a));
 
     String_appendString(a, b);

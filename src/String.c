@@ -202,6 +202,27 @@ void * String_swapcase(const void * str) {
     return swapcasedString;
 }
 
+void * String_title(const void * str) {
+    void * titledString = clone(str);
+    const StringType * self = titledString;
+    const char blank = ' ';
+    unsigned int counter = 0;    // Counter if there's a letter
+    for (int i = 0; i < (int)strlen(self -> text); ++i) {
+        char tmp = (self -> text)[i];
+        if(tmp != blank) {
+            if(counter != 0) {
+                (self -> text)[i] = tolower(tmp);
+            } else {
+                (self -> text)[i] = toupper(tmp);
+            }
+            counter++;
+        } else {
+            counter = 0;
+        }
+    }
+    return titledString;
+}
+
 void * String_toupper(const void * str) {
     void * upperedString = clone(str);
     const StringType * self = upperedString;
