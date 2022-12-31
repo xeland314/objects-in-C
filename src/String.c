@@ -70,59 +70,30 @@ const void * String = & _String;
 /* STRING METHODS
  */
 
-void * String_reverse(const void * str) 
-{
-    void * reversedString = clone(str);
-    const StringType * self = reversedString;
-    
-    int left; char temp;
-    int right = strlen(self -> text) - 1;
-    for (left = 0; left < right; left++, right--) {
-        temp = (self -> text)[left];
-        (self -> text)[left] = (self -> text)[right];
-        (self -> text)[right] = temp;
-    }
-    return reversedString;
-}
-
-void String_print(const void * str)
-{
+void String_appendChar(const void * str, const char * text) {
     const StringType * self = str;
-    printf("%s", self -> text);
+    strcat(self -> text, text);
 }
 
-void String_println(const void * str)
-{
-    const StringType * self = str;
-    printf("%s\n", self -> text);
-}
-
-void String_appendString(const void * str, const void * other)
-{
+void String_appendString(const void * str, const void * other) {
     const StringType * self = str;
     const StringType * self2 = other;
     strcat(self -> text, self2 -> text);
 }
 
-void String_appendChar(const void * str, const char * text)
-{
-    const StringType * self = str;
-    strcat(self -> text, text);
-}
-
-void * String_toupper(const void * str)
-{
-    void * upperedString = clone(str);
-    const StringType * self = upperedString;
-    for(int i = 0; i < (int)strlen(self -> text); i++) {
-        char tmp = (self -> text)[i];
-        (self -> text)[i] = toupper(tmp);
+void * String_capitalize(const void * str) {
+    void * capitalizedString = clone(str);
+    const StringType * self = capitalizedString;
+    char tmp = (self -> text)[0];
+    (self -> text)[0] = toupper(tmp);
+    for (int i = 1; i < (int)strlen(self -> text); ++i) {
+        tmp = (self -> text)[i];
+        (self -> text)[i] = tolower(tmp);
     }
-    return upperedString;
+    return capitalizedString;
 }
 
-void * String_casefold(const void * str)
-{
+void * String_casefold(const void * str) {
     void * casefoldedString = clone(str);
     const StringType * self = casefoldedString;
     for(int i = 0; i < (int)strlen(self -> text); i++) {
@@ -187,7 +158,41 @@ void * String_centerWithChar(
     return centeredString;
 }
 
-void * String_center(const void * str, int length)
-{
+void * String_center(const void * str, int length) {
     return String_centerWithChar(str, length, " ");
 }
+
+void String_print(const void * str) {
+    const StringType * self = str;
+    printf("%s", self -> text);
+}
+
+void String_println(const void * str) {
+    const StringType * self = str;
+    printf("%s\n", self -> text);
+}
+
+void * String_reverse(const void * str) {
+    void * reversedString = clone(str);
+    const StringType * self = reversedString;
+    
+    int left; char temp;
+    int right = strlen(self -> text) - 1;
+    for (left = 0; left < right; left++, right--) {
+        temp = (self -> text)[left];
+        (self -> text)[left] = (self -> text)[right];
+        (self -> text)[right] = temp;
+    }
+    return reversedString;
+}
+
+void * String_toupper(const void * str) {
+    void * upperedString = clone(str);
+    const StringType * self = upperedString;
+    for(int i = 0; i < (int)strlen(self -> text); i++) {
+        char tmp = (self -> text)[i];
+        (self -> text)[i] = toupper(tmp);
+    }
+    return upperedString;
+}
+

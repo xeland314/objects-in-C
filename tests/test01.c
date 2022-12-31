@@ -5,7 +5,8 @@
 
 int main()
 {
-    void * a = new(String, "Hello, world!!"), * aa = clone(a);
+    void * a = new(String, "hello, world!!");
+    void * aa = clone(a);
     void * b = new(String, "b");
     
     printf("sizeOf(a) == %lu\n", sizeOf(a));
@@ -24,6 +25,7 @@ int main()
     printf("b = %s\n", toString(b));
     
     String_println(String_reverse(a));
+    String_println(String_capitalize(a));
     String_println(String_casefold(a));
     String_println(String_toupper(a));
 
