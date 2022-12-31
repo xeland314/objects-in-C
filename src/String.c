@@ -186,6 +186,22 @@ void * String_reverse(const void * str) {
     return reversedString;
 }
 
+void * String_swapcase(const void * str) {
+    void * swapcasedString = clone(str);
+    const StringType * self = swapcasedString;
+    for (int i = 0; i < (int)strlen(self -> text); i++) {
+        char tmp = (self -> text)[i];
+        if(isupper(tmp)) {
+            (self -> text)[i] = tolower(tmp);
+        } else if(islower(tmp)) {
+            (self -> text)[i] = toupper(tmp);
+        } else {
+            continue;
+        }
+    }
+    return swapcasedString;
+}
+
 void * String_toupper(const void * str) {
     void * upperedString = clone(str);
     const StringType * self = upperedString;

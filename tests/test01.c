@@ -5,7 +5,7 @@
 
 int main()
 {
-    void * a = new(String, "hello, world!!");
+    void * a = new(String, "hEllo, World!!");
     void * aa = clone(a);
     void * b = new(String, "b");
     
@@ -24,9 +24,10 @@ int main()
     printf("aa = %s\n", toString(aa));
     printf("b = %s\n", toString(b));
     
-    String_println(String_reverse(a));
     String_println(String_capitalize(a));
     String_println(String_casefold(a));
+    String_println(String_reverse(a));
+    String_println(String_swapcase(a));
     String_println(String_toupper(a));
 
     String_appendString(a, b);

@@ -27,10 +27,10 @@ void * String_centerWithChar(const void * str, int length, const char * characte
 void String_print(const void * str);
 void String_println(const void * str);
 void * String_reverse(const void * str);
+void * String_swapcase(const void * str);
 void * String_toupper(const void * str);
 
 // TODO: implement the following methods:
-
 unsigned int String_count(const void * str, const char * value);
 unsigned int String_countBetweenLimits(const void * str, const char * value, int start, int end);
 bool String_endswith(const void * str, const char * value);
@@ -47,7 +47,6 @@ void * String_strip(const void * str);
 void * String_rjust(const void * str);
 void * String_ljust(const void * str);
 void * String_just(const void * str);
-void * String_swapcase(const void * str);
 void * String_title(const void * str);
 void * String_zfill(const void * str);
 void ** String_split(const void * str, const char * separator);
