@@ -46,6 +46,17 @@ int main()
     // This line raises an exception:
     // String_println(String_center_with_char(b, 20, "-+"));
 
+    if(String_endswith(b, "arco"))
+        puts("b ends with arco");
+    else
+        puts("b does not end with arco");
+
+    if(!String_endswith(a, "mundo"))
+        puts("a does not end with mundo");
+
+    if(!String_endswith(b, "mi barco"))
+        puts("b does not end with mi barco");
+
     delete(a), delete(aa), delete(b);
     return 0;
 }

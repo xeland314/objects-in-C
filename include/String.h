@@ -24,6 +24,7 @@ void * String_capitalize(const void * str);
 void * String_casefold(const void * str);
 void * String_center(const void * str, int length);
 void * String_centerWithChar(const void * str, int length, const char * characterToFill);
+bool String_endswith(const void * str, const char * suffix);
 void String_print(const void * str);
 void String_println(const void * str);
 void * String_reverse(const void * str);
@@ -33,15 +34,9 @@ void * String_toupper(const void * str);
 
 // TODO: implement the following methods:
 unsigned int String_count(const void * str, const char * value);
-unsigned int String_countBetweenLimits(const void * str, const char * value, int start, int end);
-bool String_endswith(const void * str, const char * value);
-bool String_endswithBetweenLimits(const void * str, const char * value, int start, int end);
 bool String_startswith(const void * str, const char * value);
-bool String_startswithBetweenLimits(const void * str, const char * value, int start, int end);
 unsigned int String_find(const void * str, const char * value);
-unsigned int String_findBetweenLimits(const void * str, const char * value, int start, int end);
 unsigned int String_rfind(const void * str, const char * value);
-unsigned int String_rfindBetweenLimits(const void * str, const char * value, int start, int end);
 void * String_rstrip(const void * str);
 void * String_lstrip(const void * str);
 void * String_strip(const void * str);

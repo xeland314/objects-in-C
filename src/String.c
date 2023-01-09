@@ -162,6 +162,23 @@ void * String_center(const void * str, int length) {
     return String_centerWithChar(str, length, " ");
 }
 
+bool String_endswith(const void * str, const char * suffix) {
+    const StringType * self = str;
+
+    // Check if not exist any of the strings
+    if(!self->text || !suffix)
+        return false;
+
+    // Check if the suffix is larger than the text
+    size_t lenstr = strlen(self -> text);
+    size_t lensuffix = strlen(suffix);
+    if(lensuffix > lenstr)
+        return false;
+
+    return strncmp(self -> text + lenstr - lensuffix, suffix, lensuffix) == 0;
+
+}
+
 void String_print(const void * str) {
     const StringType * self = str;
     printf("%s", self -> text);
