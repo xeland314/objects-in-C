@@ -1,5 +1,5 @@
-#include "../include/WString.h"
-#include "../include/Object.h"
+#include "WString.h"
+#include "Object.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <wchar.h>

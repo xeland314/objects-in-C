@@ -1,20 +1,19 @@
 libname = libs/libstring.a
 
 LIBSOURCES = $(wildcard src/*.c)
-OBJS = $(wildcard libs/*.o)
+OBJS = $(patsubst src/%.c, libs/%.o, $(LIBSOURCES))
 
-libflags = -c -Wall -Werror -Wextra
+AR = ar
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra
+LDFLAGS = rcs
+INCLUDE_DIR = include/
 
-objs:
-	gcc $(libflags) $(LIBSOURCES)
-	mv *.o libs
+$(OBJS): libs/%.o : src/%.c
+	$(CC) -I $(INCLUDE_DIR) -c $(CFLAGS) $< -o $@
 
-rmobjs:
-	rm $(OBJS)
+lib: $(OBJS)
+	$(AR) $(LDFLAGS) $(libname) $(OBJS)
 
-lib:
-	ar -rc $(libname) $(OBJS)
-
-rmlib:
-	rm $(libname)
-
+clean_lib:
+	rm -f $(OBJS)

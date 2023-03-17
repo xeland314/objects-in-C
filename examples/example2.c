@@ -1,5 +1,5 @@
-#include "../include/Color.h"
-#include "../include/Object.h"
+#include "Color.h"
+#include "Object.h"
 #include <stdlib.h>
 #include <stdio.h>
 

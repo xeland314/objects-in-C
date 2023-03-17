@@ -1,6 +1,6 @@
-#include "../include/Color.h"
-#include "../include/String.h"
-#include "../include/Object.h"
+#include "Color.h"
+#include "String.h"
+#include "Object.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

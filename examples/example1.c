@@ -1,5 +1,5 @@
-#include "../include/String.h"
-#include "../include/Object.h"
+#include "String.h"
+#include "Object.h"
 #include <stdlib.h>
 #include <stdio.h>
 

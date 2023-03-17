@@ -1,4 +1,4 @@
-#include "../include/Object.h"
+#include "Object.h"
 #include <stdlib.h>
 #include <assert.h>
 
