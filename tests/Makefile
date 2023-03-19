@@ -13,7 +13,7 @@ TEST2_BIN = /tmp/test2
 TEST3_BIN = /tmp/test3
 
 # Reglas de compilación
-all: test1 test2 test3
+tests: test1 test2 test3
 
 test1: $(TEST1_SRCS)
 	$(CC) $(CFLAGS) -I $(INCLUDE_DIR) $^ -o $(TEST1_BIN)
